@@ -7,7 +7,7 @@ import {settings} from "./utils/settings.js";
 const __dirname = path.resolve()
 
 
-const PORT = 8000
+const PORT = process.env.PORT || 8000
 const app = express()
 
 

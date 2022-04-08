@@ -4,7 +4,7 @@ const settings = {
         root: `https://djinni.co`,
         linkSelector: '.profile',
         contentSelector: '.list-jobs__description p',
-        template: (keywords, expLevel) => {
+        template: (keywords, expLevel, dictionary) => {
             const localExp = dictionary[expLevel]
             return `https://djinni.co/jobs/?exp_level=${expLevel}y${
                 keywords.length === 0 ?
@@ -44,7 +44,7 @@ const settings = {
         root: `https://www.work.ua`,
         linkSelector: '.card h2 a',
         contentSelector: '.card p',
-        template: function (keywords, expLevel)  {
+        template: function (keywords, expLevel, dictionary)  {
             return `https://www.work.ua/ru/jobs-${keywords.join('+')}/`
         }
     }
