@@ -13,20 +13,25 @@ const app = express()
 
 app.use(cors())
 app.use(express.json())
+app.use(express.static(path.resolve(__dirname, 'static')))
 
 let filterState = {}
 
 app.post('/filter-state', async (req, res) => {
     filterState = req.body
-    console.log(req.body)
+
     res.sendStatus(200)
 
 })
+// app.get('/', (req, res) => {
+//     res.sendFile(path.resolve())
+// })
 
 
 app.get('/parsed-data', async (req, res) => {
     const result = await parser(filterState, settings)
     console.log(result)
+    res.contentType("application/json")
     res.send(result)
 })
 
