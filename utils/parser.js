@@ -1,5 +1,6 @@
 import axios from "axios";
 import * as cheerio from "cheerio"
+import {IdGenerator} from "./IdGenerator.js";
 
 
 const textToArr = text  => {
@@ -43,6 +44,7 @@ const parseData = async ({root, template, src, linkSelector, contentSelector, di
 
         for (let i = 0; i < titlesArr.length; i++) {
             itemArr.push({
+                id: IdGenerator(titlesArr[i]),
                 src: src,
                 link: linksArr[i],
                 title: titlesArr[i],
