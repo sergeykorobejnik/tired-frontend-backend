@@ -5,12 +5,20 @@ const settings = {
         linkSelector: '.profile',
         contentSelector: '.list-jobs__description p',
         template: (keywords, expLevel) => {
+            const localExp = dictionary[expLevel]
             return `https://djinni.co/jobs/?exp_level=${expLevel}y${
                 keywords.length === 0 ?
                     '' :
                     '&keywords=' + keywords.join('+')
             }`
+        },
+        dictionary: {
+            0: 'no_exp',
+            1: '1y',
+            2: '2y'
         }
+
+
     },
     dou: {
         src: 'dou',

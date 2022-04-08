@@ -22,7 +22,7 @@ const parseData = async ({root, template, src, linkSelector, contentSelector, di
 
 
     const localTemplate = template(keywords, expLevel, dictionary)
-    //console.log(localTemplate)
+    console.log(localTemplate)
 
 
     try {
@@ -67,7 +67,6 @@ async function parser ({srcState, keywords, expLevel}, settings) {
         console.log(keywords)
 
 
-        const {djinni, dou, workua} = srcState
         let dataArr = []
 
 
@@ -78,10 +77,9 @@ async function parser ({srcState, keywords, expLevel}, settings) {
         }
 
 
-        if (djinni) await parseData(settings.djinni, keywords, expLevel, setData())
-        if (dou) await parseData(settings.dou, keywords, expLevel, setData())
-        if (workua) await parseData(settings.workua, keywords, expLevel, setData())
-
+        for (const key in srcState) {
+            if(srcState[key]) await parseData(settings[key], keywords, expLevel, setData())
+        }
 
         return dataArr
     } catch (e) {

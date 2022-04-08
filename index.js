@@ -7,7 +7,7 @@ import {settings} from "./utils/settings.js";
 const __dirname = path.resolve()
 
 
-const PORT = process.env.PORT ?? 8000
+const PORT = 8000
 const app = express()
 
 
@@ -19,18 +19,14 @@ let filterState = {}
 
 app.post('/filter-state', async (req, res) => {
     filterState = req.body
-
     res.sendStatus(200)
 
 })
-// app.get('/', (req, res) => {
-//     res.sendFile(path.resolve())
-// })
 
 
 app.get('/parsed-data', async (req, res) => {
     const result = await parser(filterState, settings)
-    console.log(result)
+    //console.log(result)
     res.contentType("application/json")
     res.send(result)
 })
