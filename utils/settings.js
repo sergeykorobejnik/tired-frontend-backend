@@ -5,6 +5,7 @@ const settings = {
         linkSelector: '.profile',
         contentSelector: '.list-jobs__description p',
         template: (keywords, expLevel, dictionary) => {
+            keywords = keywords.map(keyword => encodeURIComponent(keyword))
             const localExp = dictionary[expLevel]
             return `https://djinni.co/jobs/?exp_level=${expLevel}y${
                 keywords.length === 0 ?
@@ -17,8 +18,6 @@ const settings = {
             1: '1y',
             2: '2y'
         }
-
-
     },
     dou: {
         src: 'dou',
@@ -27,6 +26,7 @@ const settings = {
         contentSelector: '.sh-info',
         template: function (keywords, expLevel, dictionary)  {
             const localExp = dictionary[expLevel]
+            keywords = keywords.map(keyword => encodeURIComponent(keyword))
             return `https://jobs.dou.ua/vacancies/?category=Front+End&search=${
                 keywords.length === 0 ?
                     '' :
@@ -45,7 +45,11 @@ const settings = {
         linkSelector: '.card h2 a',
         contentSelector: '.card p',
         template: function (keywords, expLevel, dictionary)  {
-            return `https://www.work.ua/ru/jobs-${keywords.join('+')}/`
+            keywords = keywords.map(keyword => encodeURIComponent(keyword))
+            return `https://www.work.ua/ru/jobs${keywords.length === 0 ?
+                '/?ss=1' :
+                '-' + keywords.join('+')
+            }/`
         }
     }
 }
